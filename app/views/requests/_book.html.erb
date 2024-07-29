@@ -51,9 +51,9 @@
         <%= t "book_details.remove_from_request" %>
       <% end %>
     <% end %>
-    <p class="italic text-sm hover:underline text-muted-foreground"><%= link_to "By #{book.author.name}", "#" %></p>
-    <p class=""><i class="bi bi-star-fill"></i> <%= book.ratings.average(:rating) || 'No ratings' %></p>
-    <p class="text-muted-foreground"><%= t("publication_date") %>: <%= book.publication_date %></p>
+    <p class="italic text-sm hover:underline text-muted-foreground"><%= link_to t("books_page.by_author", author: book.author.name), "#" %></p>
+    <p class=""><i class="bi bi-star-fill"></i> <%= book.ratings.average(:rating) || t("books_page.no_rating") %></p>
+    <p class="text-muted-foreground"><%= t(".published_date") %>: <%= book.publication_date %></p>
     <p class="line-clamp-3 text-muted-foreground"><%= book.summary %></p>
     <p class="rounded-full p-3 py-1 mt-2 bg-primary text-primary-foreground w-fit"><%= link_to book.category.name, "#" %></p>
   </div>

@@ -54,4 +54,5 @@ class Book < ApplicationRecord
     joins(:borrow_books)
       .where(borrow_books: {request_id: request_ids})
   }
+  scope :in_user_cart, ->(user){where(id: user.books_in_carts.pluck(:id))}
 end
