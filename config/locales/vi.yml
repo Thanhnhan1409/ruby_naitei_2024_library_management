@@ -5,7 +5,8 @@ vi:
   categories: "Thể loại"
   home: "Trang chủ"
   search: "Tìm kiếm theo tiêu đề, mô tả"
-  publication_date: "Ngày xuất bản"
+  no_ratings: "Chưa có đánh giá"
+  published_date: "Ngày xuất bản"
 
   profile_menu:
     profile: "Hồ sơ"
@@ -51,6 +52,10 @@ vi:
     permission_err: "Bạn không có quyền truy cập trang này"
     category_not_found: "Không tìm thấy thể loại"
     welcome: "Chào mừng đến với Librarails"
+    book_not_found: "Không tìm thấy sách"
+    update_success: "Cập nhật thành công."
+    update_fail: "Cập nhật thất bại."
+    due_reminder_success: "Gửi mail nhắc nhở đến %{user_name} thành công."
     empty_request_noti: "Vui lòng chọn ít nhất một quyển sách."
     over_limit_request_noti: "Số lượng sách yêu cầu không được vượt quá 5 quyển."
     request_success_noti: "Gửi yêu cầu thành công."
@@ -100,6 +105,26 @@ vi:
     no_rating: "Chưa có đánh giá"
     published_date: "Ngày xuất bản"
     by: "Tác giả"
+    by_author: "Bởi %{author}"
+    no_rating: "Không có đánh giá"
+  book_details:
+    your_rating: "Đánh giá của bạn"
+    add_to_request: "Thêm vào yêu cầu mượn sách"
+    add_to_favourite: "Thêm vào yêu thích"
+    available_quantity: "Số lượng hiện có"
+    review: "Bình luận"
+    summary: "Tóm tắt nội dung"
+    detail: "Thông tin chi tiết"
+    write_review: "Viết bình luận"
+    related_books: "Sách liên quan"
+    view_more: "Xem thêm =>"
+    author: "Tác giả"
+  user_mailer:
+    due_reminder:
+      subject: "Nhắc nhở về thời gian trả sách"
+      hello: "Xin chào %{name},"
+      message: "Đây là lời nhắc nhở rằng bạn cần trả lại sách đã mượn trước ngày %{due_date}."
+      thanks: "Cảm ơn bạn!"
   requests:
     new:
       back: "Quay lại"

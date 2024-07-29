@@ -1,0 +1,67 @@
+<div class="flex w-full py-10 gap-10 relative ">
+  <div  class="border-2 flex-1 h-fit sticky top-32">
+    <%= image_tag @book.cover_url, alt: "cover", class: "w-full"  %>
+    <div class="flex justify-between p-4 bg-card  pt-6  items-center ">
+      <p class=" font-semibold">
+        <%= t "book_details.available_quantity" %>:
+        <%= @book.book_inventory.available_quantity %>
+      </p>
+      <div class="flex gap-2 items-center">
+        <%= render_tooltip do %>
+          <%= tooltip_trigger do %>
+            <button class="bg-primary border-primary border-2 rounded-md text-primary-foreground hover:bg-primary/80 text-xl p-2 px-4">
+              <i class="bi bi-wallet-fill"></i>
+            </button>
+          <% end %>
+          <%= tooltip_content do %>
+            <%= t "book_details.add_to_request" %>
+          <% end %>
+        <% end %>
+        <%= render_tooltip do %>
+          <%= tooltip_trigger do %>
+            <button class="border-2 border-primary text-primary font-bold  rounded-md hover:bg-secondary text-xl p-2 px-4 ">
+              <i class="bi bi-bookmark-heart"></i>
+            </button>
+          <% end %>
+          <%= tooltip_content do %>
+            <%= t "book_details.add_to_favourite" %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="flex justify-between  font-semibold items-center p-4 pt-0  gap-8 bg-card">
+      <%= t "book_details.your_rating" %>
+      <%= render "books/ratings" %>
+    </div>
+  </div>
+  <div class=" flex-[2] space-y-4 ">
+    <div class="border-2 shadow-md p-5 bg-card rounded-lg space-y-2 ">
+      <h2 class="font-bold text-primary text-3xl "><%= link_to @book.title, book_path(@book) %></h2>
+      <p class="text-xl"><i class="bi bi-star-fill text-yellow-400"></i> <%= @book.ratings.average(:rating) || t("no_ratings") %> (0)</p>
+      <p class="rounded-full p-3 py-1 mt-2 font-semibold bg-primary text-primary-foreground w-fit"><%= link_to @book.category.name, books_path(category: @book.category.id) %></p>
+    </div>
+    <div class="border-2 shadow-md p-5 bg-card rounded-lg space-y-2 ">
+      <h2 class="font-semibold text-2xl"><%= t "book_details.detail" %></h2>
+      <p class=""><%= t "book_details.author" %>: <%= link_to @book.author.name, "#" %></p>
+      <p class="" ><%= t "books_page.published_date" %>: <%= @book.publication_date %></p>
+    </div>
+    <div class="border-2 shadow-md p-5 bg-card rounded-lg space-y-2 ">
+      <h2 class="font-semibold text-2xl"><%= t "book_details.summary" %></h2>
+      <p class=" "><%= sanitize @book.summary %>
+      </p>
+    </div>
+    <div class="border-2 shadow-md p-5 bg-card rounded-lg space-y-2 ">
+      <div class="flex justify-between">
+        <h2 class="font-semibold text-2xl"><%= t "book_details.related_books" %></h2>
+        <%= link_to t("book_details.view_more"), books_path(category: @book.category.id), class: "hover:underline" %>
+      </div>
+      <div class="grid grid-cols-4 gap-4 py-4">
+        <%= render partial: 'books/related_book', collection: @related_books %>
+      </div>
+    </div>
+    <div class="border-2 shadow-md p-5 bg-card rounded-lg space-y-2 ">
+      <h2 class="font-semibold text-2xl"><%= t "book_details.review" %></h2>
+      <%= render_input name: "sample_input", id: "sample_input", placeholder: t("book_details.write_review") %>
+    </div>
+  </div>
+</div>

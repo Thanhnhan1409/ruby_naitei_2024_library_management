@@ -1,0 +1,10 @@
+<%= render_tooltip do %>
+  <%= tooltip_trigger do %>
+    <%= link_to book_path(related_book), class: " border-primary  h-fit" do %>
+      <%= image_tag related_book.cover_url, alt: "cover", class: "w-full"  %>
+    <% end %>
+  <% end %>
+  <%= tooltip_content do %>
+    <p class=""><%= related_book.title %></p>
+  <% end %>
+<% end %>

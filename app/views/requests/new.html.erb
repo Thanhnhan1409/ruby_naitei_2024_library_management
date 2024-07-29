@@ -8,9 +8,7 @@
           <%= image_tag "no-data.png", alt: "no-data", class: "w-1/6 m-auto" %>
         </div>
       <% else %>
-        <% @books.each do |book| %>
-          <%= render partial: "book", locals: { book: book, show_trash_icon: true } %>
-        <% end %>
+        <%= render partial: "book", collection: @books, as: :book, locals: { show_trash_icon: true } %>
         <div class="pb-8 flex justify-between items-center">
           <%= link_to t(".back"), "#", class: "inline-block bg-header text-primary p-3 rounded-full px-8 w-1/6 text-center" %>
           <%= form.hidden_field :status, value: :pending %>

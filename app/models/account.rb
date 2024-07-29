@@ -26,6 +26,10 @@ class Account < ApplicationRecord
     BCrypt::Password.new(remember_id).is_password? remember_id
   end
 
+  def toggle_status
+    active? ? ban! : active!
+  end
+
   def forget
     update_column :remember_id, nil
   end

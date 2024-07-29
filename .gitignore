@@ -47,3 +47,4 @@ config/environments/*.local.yml
 /storage
 /node_modules/
 Procfile.dev
+config/application.yml

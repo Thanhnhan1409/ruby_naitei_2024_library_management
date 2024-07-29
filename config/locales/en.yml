@@ -5,7 +5,8 @@ en:
   categories: "Categories"
   home: "Home"
   search: "Search by title or summary"
-  publication_date: "Publication Date"
+  no_ratings: "No ratings"
+  published_date: "Published Date"
 
   profile_menu:
     profile: "Profile"
@@ -51,6 +52,10 @@ en:
     permission_err: "You do not have permission to access this page"
     category_not_found: "Category not found"
     welcome: "Welcome to Librarails"
+    book_not_found: "Book not found"
+    update_success: "Update successful."
+    update_fail: "Update failed."
+    due_reminder_success: "Reminder email sent to %{user_name}."
     empty_request_noti: "Please select at least one book."
     over_limit_request_noti: "The number of requested books must not exceed 5."
     request_success_noti: "Request successfully."
@@ -100,6 +105,25 @@ en:
     no_rating: "No Rating"
     published_date: "Published Date"
     by: "By"
+    by_author: "By %{author}"
+    no_rating: "No rating"
+  book_details:
+    your_rating: "Your Rating"
+    add_to_request: "Add to Borrow Request"
+    add_to_favourite: "Add to Favorite"
+    available_quantity: "Available Quantity"
+    review: "Review"
+    detail: "Book Details"
+    write_review: "Write a review"
+    related_books: "Related Books"
+    view_more: "View more =>"
+    author: "Author"
+  user_mailer:
+    due_reminder:
+      subject: "Book Return Reminder"
+      hello: "Dear %{name},"
+      message: "This is a reminder that you need to return your borrowed book(s) by %{due_date}."
+      thanks: "Thank you!"
   requests:
     new:
       back: "Back"

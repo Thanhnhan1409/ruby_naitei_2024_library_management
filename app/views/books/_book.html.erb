@@ -1,20 +1,20 @@
 <div  id="book-<%= book.id %>" class="flex h-fit w-full gap-4 items-center">
-  <%= link_to book_path(book), class: "border-2 flex-1 h-full" do %>
+  <%= link_to book_path(book),data: {turbo_frame: "_top"} ,  class: "border-2 flex-1 h-full" do %>
     <%= image_tag book.cover_url, alt: "cover", class: "w-full"  %>
   <% end %>
   <div class="py-2 flex-[2]">
     <%= render_tooltip do %>
       <%= tooltip_trigger do %>
-        <h2 class="font-bold text-primary text-lg hover:underline line-clamp-1"><%= link_to book.title, book_path(book) %></h2>
+        <h2 class="font-bold text-primary text-lg hover:underline line-clamp-1"><%= link_to book.title, book_path(book), data: {turbo_frame: "_top"} %></h2>
       <% end %>
       <%= tooltip_content do %>
         <%= book.title %>
       <% end %>
     <% end %>
     <p class="italic text-sm hover:underline text-muted-foreground"><%= link_to "#{t("books_page.by")} #{book.author.name}", "#" %></p>
-    <p class="" ><i class="bi bi-star-fill"></i> <%= book.ratings.average(:rating) || t("books_page.no_ratingd") %></p>
+    <p class="" ><i class="bi bi-star-fill"></i> <%= book.ratings.average(:rating) || t("books_page.no_rating") %></p>
     <p class="text-muted-foreground" ><%= t "books_page.published_date" %>: <%= book.publication_date %></p>
-    <p class=" line-clamp-3 text-muted-foreground "><%= book.summary %></p>
+    <p class=" line-clamp-3 text-muted-foreground "><%= book.description %></p>
     <p class="rounded-full p-3 py-1 mt-2 bg-primary text-primary-foreground w-fit"><%= link_to book.category.name, books_path(category: book.category.id) %></p>
   </div>
 </div>

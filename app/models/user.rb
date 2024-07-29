@@ -33,6 +33,10 @@ class User < ApplicationRecord
     joins(:borrow_books).merge(BorrowBook.near_due)
   end)
 
+  def send_due_reminder
+    UserMailer.with(user: self).reminder_email.deliver_now
+  end
+
   def books_in_carts
     books
   end

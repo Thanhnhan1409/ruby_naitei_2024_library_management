@@ -15,7 +15,7 @@
         <div class="flex justify-between items-center">
           <%= link_to "Nhan cute", "#" %>
           <span class="inline-block px-2">  |  </span>
-          <%= link_to t(".sign_out"), logout_path, data: { "turbo-method": :delete }  %>
+          <%= button_to t(".sign_out"), logout_path, method: :delete, data: { "turbo-method": :delete }  %>
         </div>
       </header>
       <div class="flex gap-10 items-start">
@@ -47,7 +47,7 @@
               <%= t ".users" %>
             <% end %>
             <%= accordion_description do %>
-                <li class="py-3 px-6 border-b hover:bg-[#E0E0E0] cursor-pointer"><%= link_to t(".user_list"), users_path %></li>
+                <li class="py-3 px-6 border-b hover:bg-[#E0E0E0] cursor-pointer"><%= link_to t(".user_list"), admin_users_path %></li>
               </ul>
             <% end %>
           <% end %>

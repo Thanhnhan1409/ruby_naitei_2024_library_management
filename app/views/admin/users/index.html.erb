@@ -1,5 +1,5 @@
 <% provide :title, t("user.index.title") %>
-<%= form_with url: users_path, method: :get, local: true, class: "your-form-class" do %>
+<%= form_with url: admin_users_path, method: :get, local: true, class: "your-form-class" do %>
   <%= select_tag :status, options_for_select(status_options_for_select, params[:status]), class: "col-span-2 mb-2 rounded-md border border-input bg-background" %>
   <%= submit_tag t("user.filter"), class: "mr-24 h-10 px-4 py-2 bg-primary text-primary-foreground hover:bg-primary-500/90 rounded-md text-sm font-medium" %>
 <% end %>
