@@ -3,7 +3,8 @@ class BorrowBook < ApplicationRecord
   belongs_to :book
   belongs_to :request
 
-  validates :borrow_date, :is_borrow, presence: true
+  validates :borrow_date, presence: true
+  validates :is_borrow, inclusion: {in: [true, false]}
 
   scope :overdue, (lambda do
                      where("borrow_date < ? AND is_borrow = ?",

@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :accounts, only: %i(new create)
     resources :users, only: %i(new create index)
     resources :ratings, only: %i(create)
+    resources :carts, only: %i(create destroy show)
     namespace :admin do
       resources :users, only: :index do
         member do
@@ -25,6 +26,6 @@ Rails.application.routes.draw do
       end
       resources :books, only: %i(index new create destroy edit update)
     end
-    resources :requests, only: %i(new create)
+    resources :requests, only: %i(new create show)
   end
 end

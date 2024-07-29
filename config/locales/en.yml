@@ -81,6 +81,11 @@ en:
     sign_in_first: "Please sign in first"
     rating_fail: "There was an error when rating the book."
 
+    book_already_in_cart: "This book is already in your cart."
+    add_book_to_cart_success: "Add book to cart successfully."
+    add_book_to_cart_fail: "Add book to cart failed."
+    remove_book_from_cart_success: "Remove book from cart successfully."
+    remove_book_from_cart_fail: "Remove book from cart failed."
   user:
     filter: "Filter"
     index:
@@ -140,6 +145,7 @@ en:
   book_details:
     your_rating: "Your Rating"
     add_to_request: "Add to Borrow Request"
+    remove_from_request: "Remove from Borrow Request"
     add_to_favourite: "Add to Favorite"
     available_quantity: "Available Quantity"
     review: "Review"

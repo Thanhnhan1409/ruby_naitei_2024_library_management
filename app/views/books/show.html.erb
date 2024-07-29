@@ -1,21 +1,19 @@
-<main class="container relative mx-auto mt-[84px] px-5">
-  <div class="flex w-full py-10 gap-10 relative ">
-    <div  class="border-2 flex-1 h-fit sticky top-32">
-      <%= image_tag @book.cover_image.attached? ? @book.cover_image : "default_cover_image.png", alt: "cover", class: "w-full"  %>
-      <div class="flex justify-between p-4 bg-card  pt-6  items-center ">
-        <p class=" font-semibold">
-          <%= t "book_details.available_quantity" %>:
-          <%= @book.book_inventory.available_quantity %>
-        </p>
-        <div class="flex gap-2 items-center">
-          <%= render_tooltip do %>
-            <%= tooltip_trigger do %>
-              <button class="bg-primary border-primary border-2 rounded-md text-primary-foreground hover:bg-primary/80 text-xl p-2 px-4">
+<div class="flex w-full py-10 gap-10 relative ">
+  <div  class="border-2 flex-1 h-fit sticky top-32">
+    <%= image_tag @book.cover_url, alt: "cover", class: "w-full"  %>
+    <div class="flex justify-between p-4 bg-card  pt-6  items-center ">
+      <p class=" font-semibold">
+        <%= t "book_details.available_quantity" %>:
+        <%= @book.book_inventory.available_quantity %>
+      </p>
+      <div class="flex gap-2 items-center">
+        <%= render_tooltip do %>
+          <%= tooltip_trigger do %>
+            <%= form_with url: carts_path, method: :post, local: false, html: { id: "add-to-cart-form-#{@book.id}", class: "add-to-cart-form" } do %>
+              <%= hidden_field_tag :book_id, @book.id %>
+              <button type="submit" class="bg-primary border-primary border-2 rounded-md text-primary-foreground hover:bg-primary/80 text-xl p-2 px-4">
                 <i class="bi bi-wallet-fill"></i>
               </button>
-            <% end %>
-            <%= tooltip_content do %>
-              <%= t "book_details.add_to_request" %>
             <% end %>
           <% end %>
           <%= render_tooltip do %>

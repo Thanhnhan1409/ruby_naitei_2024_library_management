@@ -18,11 +18,15 @@ class RequestsController < ApplicationController
 
     process_request selected_books
   rescue ActiveRecord::RecordInvalid
-    flash[:notice] = t "noti.request_failure_noti"
+    flash[:danger] = t "noti.request_failure_noti"
     render :new
   end
 
   private
+
+  def fetch_requests_with_books requests
+    requests.includes(:books) # Assuming a request has many books
+  end
 
   def fetch_selected_books
     Book.in_user_cart(current_user)
@@ -31,7 +35,7 @@ class RequestsController < ApplicationController
   def handle_empty_books selected_books
     return if selected_books.present?
 
-    flash[:notice] = t "noti.empty_request_noti"
+    flash[:warning] = t "noti.empty_request_noti"
     redirect_to new_request_path
     true
   end
@@ -39,7 +43,7 @@ class RequestsController < ApplicationController
   def handle_book_limit selected_books
     return unless selected_books.count > Settings.max_books
 
-    flash[:notice] = t "noti.over_limit_request_noti"
+    flash[:warning] = t "noti.over_limit_request_noti"
     redirect_to new_request_path
     true
   end
@@ -50,10 +54,20 @@ class RequestsController < ApplicationController
 
     return false if total_books_count <= Settings.max_books
 
-    flash[:alert] = t "noti.over_limit_request_noti"
+    flash[:warning] = t "noti.over_limit_request_noti"
     redirect_to root_path
     true
   end
+
+  # def show
+  #   pending_requests = current_user.requests.pending
+  #   approved_requests = current_user.requests.approved
+  #   rejected_requests = current_user.requests.rejected
+
+  #   @pending_requests = fetch_requests_with_books(pending_requests)
+  #   @approved_requests = fetch_requests_with_books(approved_requests)
+  #   @rejected_requests = fetch_requests_with_books(rejected_requests)
+  # end
 
   def process_request selected_books
     ActiveRecord::Base.transaction do
@@ -64,11 +78,11 @@ class RequestsController < ApplicationController
           book:,
           request: @request,
           borrow_date: Time.current,
-          is_borrow: true
+          is_borrow: false
         )
         current_user.carts.where(book_id: book.id).destroy_all
       end
-      flash[:notice] = t "noti.request_success_noti"
+      flash[:success] = t "noti.request_success_noti"
       redirect_to root_path
     end
   end

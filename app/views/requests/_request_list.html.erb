@@ -1,0 +1,11 @@
+<ul class="request-list">
+  <% if requests.present? %>
+    <% requests.each do |request| %>
+      <li class="request-item">
+        <%= render partial: 'request', locals: { request: request, books: request.books } %>
+      </li>
+    <% end %>
+  <% else %>
+    <p><%= t("requests.no_requests") %></p>
+  <% end %>
+</ul>
