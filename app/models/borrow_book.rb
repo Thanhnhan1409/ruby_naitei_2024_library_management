@@ -14,4 +14,7 @@ class BorrowBook < ApplicationRecord
                       AND is_borrow = ?", Settings.day_5, Settings.day_7, true)
                       .order("borrow_date ASC")
                     end)
+  scope :count_for_user, lambda {|user_id|
+                           where(user_id:, is_borrow: true).count
+                         }
 end

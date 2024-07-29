@@ -1,0 +1,22 @@
+<div class="py-8 inline-block h-full w-full">
+  <div class="text-3xl py-4 font-semibold mt-4"><%= t(".create_request") %></div>
+  <%= form_with model: @request, url: requests_path, local: true do |form| %>
+    <div id="books-container" class="flex flex-col gap-4 p-6 border shadow-lg rounded-xl">
+      <% if @books.empty? %>
+        <div class="flex flex-col items-center gap-4">
+          <p class="w-full text-center mt-8"><%= t(".request_empty") %></p>
+          <%= image_tag "no-data.png", alt: "no-data", class: "w-1/6 m-auto" %>
+        </div>
+      <% else %>
+        <% @books.each do |book| %>
+          <%= render partial: "book", locals: { book: book, show_trash_icon: true } %>
+        <% end %>
+        <div class="pb-8 flex justify-between items-center">
+          <%= link_to t(".back"), "#", class: "inline-block bg-header text-primary p-3 rounded-full px-8 w-1/6 text-center" %>
+          <%= form.hidden_field :status, value: :pending %>
+          <%= form.submit t(".send_request"), class: "inline-block bg-primary text-primary-foreground p-3 rounded-full px-8 w-1/6 text-center" %>
+        </div>
+      <% end%>
+    <% end %>
+  </div>
+</div>

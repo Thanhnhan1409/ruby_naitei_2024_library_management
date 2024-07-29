@@ -50,6 +50,10 @@ vi:
     permission_err: "Bạn không có quyền truy cập trang này"
     category_not_found: "Không tìm thấy thể loại"
     welcome: "Chào mừng đến với Librarails"
+    empty_request_noti: "Vui lòng chọn ít nhất một quyển sách."
+    over_limit_request_noti: "Số lượng sách yêu cầu không được vượt quá 5 quyển."
+    request_success_noti: "Gửi yêu cầu thành công."
+    request_failure_noti: "Gửi yêu cầu thất bại."
   user:
     filter: "Lọc"
     index:
@@ -95,3 +99,10 @@ vi:
     no_rating: "Chưa có đánh giá"
     published_date: "Ngày xuất bản"
     by: "Tác giả"
+  requests:
+    new:
+      back: "Quay lại"
+      send_request: "Gửi yêu cầu"
+      create_request: "Tạo yêu cầu"
+      delete: "Xóa"
+      request_empty: "Danh sách yêu cầu trống"

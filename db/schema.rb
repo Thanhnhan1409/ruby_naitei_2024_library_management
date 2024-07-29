@@ -54,7 +54,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_30_080959) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "cover_url"
   end
 
   create_table "books", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -68,7 +67,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_30_080959) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "cover_url"
-    t.string "description"
     t.index ["author_id"], name: "index_books_on_author_id"
     t.index ["book_series_id"], name: "index_books_on_book_series_id"
     t.index ["category_id"], name: "index_books_on_category_id"
@@ -87,6 +85,15 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_30_080959) do
     t.index ["book_id"], name: "index_borrow_books_on_book_id"
     t.index ["request_id"], name: "index_borrow_books_on_request_id"
     t.index ["user_id"], name: "index_borrow_books_on_user_id"
+  end
+
+  create_table "carts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "book_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_carts_on_book_id"
+    t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
   create_table "categories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -159,6 +166,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_30_080959) do
   add_foreign_key "borrow_books", "books"
   add_foreign_key "borrow_books", "requests"
   add_foreign_key "borrow_books", "users"
+  add_foreign_key "carts", "books"
+  add_foreign_key "carts", "users"
   add_foreign_key "categories", "categories", column: "parent_id"
   add_foreign_key "comments", "books"
   add_foreign_key "comments", "users"

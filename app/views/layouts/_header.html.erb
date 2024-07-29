@@ -1,4 +1,4 @@
-<header class="fixed z-20 top-0 px-4 w-full">
+<header class="fixed z-20 top-0 px-4 w-full bg-background">
   <div class="bg-header h-[76px] flex justify-between items-center pl-8 pr-3 m-2 mx-auto max-w-[1400px] rounded-full">
     <div class="flex gap-x-10 items-center">
       <%= link_to "/", id: "logo", class: "flex items-center pb-2" do %>
@@ -16,9 +16,9 @@
     </div>
     <div class="flex gap-x-5 items-center">
       <% if logged_in? %>
-        <button class="hover:bg-black/20 duration-500 rounded-full p-3">
+        <%= link_to new_request_path, id: "logo", class: "hover:bg-black/20 duration-500 rounded-full p-3" do %>
           <i class="bi bi-book text-3xl"></i>
-        </button>
+        <% end %>
         <%= render_dropdown_menu do %>
           <%= dropdown_menu_trigger do %>
             <%= image_tag "avatar.jpeg", alt: "sample app avatar", class: "w-14 border cursor-pointer border-primary h-14 rounded-full" %>

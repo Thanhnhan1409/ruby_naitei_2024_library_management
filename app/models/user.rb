@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :ratings, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :author_followers, dependent: :destroy
+  has_many :carts, dependent: :destroy
+  has_many :books, through: :carts, dependent: :destroy
 
   enum gender: {male: 0, female: 1}
 
@@ -30,6 +32,10 @@ class User < ApplicationRecord
   scope :neardue, (lambda do
     joins(:borrow_books).merge(BorrowBook.near_due)
   end)
+
+  def books_in_carts
+    books
+  end
 
   class << self
     def with_status status

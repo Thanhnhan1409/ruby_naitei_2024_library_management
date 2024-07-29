@@ -50,6 +50,10 @@ en:
     permission_err: "You do not have permission to access this page"
     category_not_found: "Category not found"
     welcome: "Welcome to Librarails"
+    empty_request_noti: "Please select at least one book."
+    over_limit_request_noti: "The number of requested books must not exceed 5."
+    request_success_noti: "Request successfully."
+    request_failure_noti: "Request failed."
   user:
     filter: "Filter"
     index:
@@ -95,3 +99,10 @@ en:
     no_rating: "No Rating"
     published_date: "Published Date"
     by: "By"
+  requests:
+    new:
+      back: "Back"
+      send_request: "Send Request"
+      create_request: "Create Request"
+      delete: "Delete"
+      request_empty: "Request is empty"

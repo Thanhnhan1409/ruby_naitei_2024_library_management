@@ -7,6 +7,7 @@ class Book < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :ratings, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :users, through: :carts, dependent: :destroy
 
   scope :latest, ->{order(publication_date: :desc)}
   scope :oldest, ->{order(publication_date: :asc)}
@@ -38,4 +39,5 @@ class Book < ApplicationRecord
   }
 
   validates :title, :summary, :quantity, :publication_date, presence: true
+  scope :in_user_cart, ->(user){where(id: user.books_in_carts.pluck(:id))}
 end
