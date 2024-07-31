@@ -4,4 +4,5 @@ class Request < ApplicationRecord
   has_many :borrow_books, dependent: :destroy
 
   validates :status, presence: true
+  scope :pending_for_user, ->(user){where(user:, status: :pending)}
 end

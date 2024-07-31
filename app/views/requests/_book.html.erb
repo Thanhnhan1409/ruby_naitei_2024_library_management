@@ -1,4 +1,4 @@
-<div id="book-<%= book.id %>" class="flex h-fit w-full gap-4 items-center pb-4 border-b">
+<div id="book-<%= book.id %>" class="flex h-fit w-full gap-4 items-center py-4 border-b">
   <%= link_to "#", class: "border-2 flex-1 h-full w-1/6" do %>
     <%= image_tag book.cover_url, alt: "cover", class: "w-full" %>
   <% end %>
@@ -13,7 +13,7 @@
     <% end %>
     <p class="italic text-sm hover:underline text-muted-foreground"><%= link_to "By #{book.author.name}", "#" %></p>
     <p class=""><i class="bi bi-star-fill"></i> <%= book.ratings.average(:rating) || 'No ratings' %></p>
-    <p class="text-muted-foreground">Publication Date: <%= book.publication_date %></p>
+    <p class="text-muted-foreground"><%= t("publication_date") %>: <%= book.publication_date %></p>
     <p class="line-clamp-3 text-muted-foreground"><%= book.summary %></p>
     <p class="rounded-full p-3 py-1 mt-2 bg-primary text-primary-foreground w-fit"><%= link_to book.category.name, "#" %></p>
   </div>

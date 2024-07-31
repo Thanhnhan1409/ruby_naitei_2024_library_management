@@ -20,8 +20,14 @@ class RequestsController < ApplicationController
 
     process_request(selected_books)
   rescue ActiveRecord::RecordInvalid
-    flash[:alert] = t("noti.request_failure_noti")
+    flash[:notice] = t("noti.request_failure_noti")
     render :new
+  end
+
+  def show
+    @pending_books = Book.pending_for_user(current_user)
+    @borrowed_books = BorrowBook.borrowed_by_user(current_user).map(&:book)
+    @borrowing_books = BorrowBook.borrowing_by_user(current_user).map(&:book)
   end
 
   private
@@ -39,7 +45,7 @@ class RequestsController < ApplicationController
   def handle_empty_books selected_books
     return if selected_books.present?
 
-    flash[:alert] = t("noti.empty_request_noti")
+    flash[:notice] = t("noti.empty_request_noti")
     redirect_to new_request_path
     true
   end
@@ -47,7 +53,7 @@ class RequestsController < ApplicationController
   def handle_book_limit selected_books
     return unless selected_books.count > Settings.max_books
 
-    flash[:alert] = t("noti.over_limit_request_noti")
+    flash[:notice] = t("noti.over_limit_request_noti")
     redirect_to new_request_path
     true
   end
@@ -55,7 +61,9 @@ class RequestsController < ApplicationController
   def handle_borrowed_books_limit selected_books
     borrowed_books_count = BorrowBook.count_for_user(current_user.id)
 
-    return unless borrowed_books_count + selected_books.count > Settings.max_books
+    unless borrowed_books_count + selected_books.count > Settings.max_books
+      return
+    end
 
     flash[:alert] = t("noti.over_limit_request_noti")
     redirect_to root_path

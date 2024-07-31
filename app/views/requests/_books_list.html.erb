@@ -1,0 +1,7 @@
+<% if books.empty? %>
+  <%= render "no_data" %>
+<% else %>
+  <% books.each do |book| %>
+    <%= render partial: "book", locals: { book: book, show_trash_icon: show_trash_icon } %>
+  <% end %>
+<% end %>

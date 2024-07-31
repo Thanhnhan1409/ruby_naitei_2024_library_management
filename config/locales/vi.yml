@@ -5,6 +5,7 @@ vi:
   categories: "Thể loại"
   home: "Trang chủ"
   search: "Tìm kiếm theo tiêu đề, mô tả"
+  publication_date: "Ngày xuất bản"
 
   profile_menu:
     profile: "Hồ sơ"
@@ -106,3 +107,7 @@ vi:
       create_request: "Tạo yêu cầu"
       delete: "Xóa"
       request_empty: "Danh sách yêu cầu trống"
+    show:
+      peding_list: "Danh sách chờ"
+      borrowed_list: "Danh sách đã mượn"
+      borrowring_list: "Danh sách đang mượn"

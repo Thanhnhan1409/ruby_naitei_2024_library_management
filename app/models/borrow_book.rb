@@ -17,4 +17,11 @@ class BorrowBook < ApplicationRecord
   scope :count_for_user, lambda {|user_id|
                            where(user_id:, is_borrow: true).count
                          }
+  scope :borrowed_by_user, lambda {|user|
+                             where(user:, is_borrow: false)
+                           }
+
+  scope :borrowing_by_user, lambda {|user|
+                              where(user:, is_borrow: true)
+                            }
 end

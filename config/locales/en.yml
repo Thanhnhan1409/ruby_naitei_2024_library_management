@@ -5,6 +5,7 @@ en:
   categories: "Categories"
   home: "Home"
   search: "Search by title or summary"
+  publication_date: "Publication Date"
 
   profile_menu:
     profile: "Profile"
@@ -106,3 +107,7 @@ en:
       create_request: "Create Request"
       delete: "Delete"
       request_empty: "Request is empty"
+    show:
+      peding_list: "Pending List"
+      borrowed_list: "Borrowed List"
+      borrowring_list: "Borrowing List"
