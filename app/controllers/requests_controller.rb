@@ -22,6 +22,12 @@ class RequestsController < ApplicationController
     render :new
   end
 
+  def show
+    @pending_books = Book.pending_for_user(current_user)
+    @borrowed_books = BorrowBook.borrowed_by_user(current_user).map(&:book)
+    @borrowing_books = BorrowBook.borrowing_by_user(current_user).map(&:book)
+  end
+
   private
 
   def fetch_requests_with_books requests

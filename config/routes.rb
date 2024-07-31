@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     post "/login", to: "sessions#create"
     delete "/logout", to: "sessions#destroy"
     get "static_pages/home"
-    get "requests/new", to: "requests#new", as: "new_request"
+    # get "requests/new", to: "requests#new", as: "new_request"
     root "static_pages#home"
     resources :books, only: %i(index show)
     resources :book_series, only: %i(show)

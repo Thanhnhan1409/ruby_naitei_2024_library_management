@@ -9,6 +9,8 @@ vi:
   published_date: "Ngày xuất bản"
   home: "Trang chủ"
   search: "Tìm kiếm"
+  publication_date: "Ngày xuất bản"
+
   profile_menu:
     profile: "Hồ sơ"
     language: "Ngôn ngữ"
@@ -172,5 +174,9 @@ vi:
       create_request: "Tạo yêu cầu"
       delete: "Xóa"
       request_empty: "Danh sách yêu cầu trống"
+    show:
+      peding_list: "Danh sách chờ"
+      borrowed_list: "Danh sách đã mượn"
+      borrowring_list: "Danh sách đang mượn"
   home_page:
     start_reading: "Bắt đầu khám phá =>"

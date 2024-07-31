@@ -1,4 +1,4 @@
-<div id="book-<%= book.id %>" class="flex h-fit w-full gap-4 items-center pb-4 border-b">
+<div id="book-<%= book.id %>" class="flex h-fit w-full gap-4 items-center py-4 border-b">
   <%= link_to "#", class: "border-2 flex-1 h-full w-1/6" do %>
     <%= image_tag book.cover_url, alt: "cover", class: "w-full" %>
   <% end %>
@@ -51,5 +51,16 @@
         <%= t "book_details.remove_from_request" %>
       <% end %>
     <% end %>
+    <p class="italic text-sm hover:underline text-muted-foreground"><%= link_to "By #{book.author.name}", "#" %></p>
+    <p class=""><i class="bi bi-star-fill"></i> <%= book.ratings.average(:rating) || 'No ratings' %></p>
+    <p class="text-muted-foreground"><%= t("publication_date") %>: <%= book.publication_date %></p>
+    <p class="line-clamp-3 text-muted-foreground"><%= book.summary %></p>
+    <p class="rounded-full p-3 py-1 mt-2 bg-primary text-primary-foreground w-fit"><%= link_to book.category.name, "#" %></p>
+  </div>
+  <% if show_trash_icon %>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+      <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+      <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+    </svg>
   <% end %>
 </div>

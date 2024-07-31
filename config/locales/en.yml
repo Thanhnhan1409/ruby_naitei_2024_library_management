@@ -178,5 +178,9 @@ en:
       create_request: "Create Request"
       delete: "Delete"
       request_empty: "Request is empty"
+    show:
+      peding_list: "Pending List"
+      borrowed_list: "Borrowed List"
+      borrowring_list: "Borrowing List"
   home_page:
     start_reading: "Start Exploring =>"

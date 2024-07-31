@@ -48,4 +48,10 @@ class Book < ApplicationRecord
   scope :in_user_cart, ->(user){where(id: user.books_in_carts.pluck(:id))}
   validates :title, :summary, :quantity, :publication_date, :cover_image,
             presence: true
+  validates :title, :summary, :quantity, :publication_date, presence: true
+  scope :pending_for_user, lambda {|user|
+    request_ids = Request.pending_for_user(user).pluck(:id)
+    joins(:borrow_books)
+      .where(borrow_books: {request_id: request_ids})
+  }
 end
