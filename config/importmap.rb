@@ -8,3 +8,5 @@ pin_all_from "app/javascript/controllers", under: "controllers"
 pin "hotkeys-js" # @3.13.7
 pin "@stimulus-components/notification", to: "@stimulus-components--notification.js" # @3.0.0
 pin "stimulus-use" # @0.52.2
+pin_all_from "app/javascript/custom", under: "custom"
+pin_all_from "app/javascript/controllers", under: "controllers"

@@ -10,11 +10,9 @@ class RequestsController < ApplicationController
     @request = current_user.requests.build(request_params)
     selected_books = fetch_selected_books
 
-    if handle_empty_books(selected_books) ||
-       handle_book_limit(selected_books) ||
-       handle_borrowed_books_limit(selected_books)
-      return
-    end
+    return if handle_empty_books(selected_books) ||
+              handle_book_limit(selected_books) ||
+              handle_borrowed_books_limit(selected_books)
 
     process_request selected_books
   rescue ActiveRecord::RecordInvalid
@@ -23,13 +21,31 @@ class RequestsController < ApplicationController
   end
 
   def show
-    @pending_books = Book.pending_for_user(current_user)
-    @borrowed_books = BorrowBook.borrowed_by_user(current_user).map(&:book)
-    @borrowing_books = BorrowBook.borrowing_by_user(current_user).map(&:book)
+    @pending_requests = Request.includes(borrow_books: :book).where(
+      status: :pending, user: current_user
+    )
+    @approved_requests = Request.includes(borrow_books: :book).where(
+      status: :approved, user: current_user
+    )
+    @rejected_requests = Request.includes(borrow_books: :book).where(
+      status: :rejected, user: current_user
+    )
+    @canceled_requests = Request.includes(borrow_books: :book).where(
+      status: :cancel, user: current_user
+    )
+  end
+
+  def update_status
+    @request = Request.find(params[:id])
+    if @request.update(status: params[:status],
+                       description: params[:description])
+      render json: {success: true}
+    else
+      render json: {success: false, errors: @request.errors.full_messages}
+    end
   end
 
   private
-
   def fetch_requests_with_books requests
     requests.includes(:books) # Assuming a request has many books
   end
@@ -55,25 +71,19 @@ class RequestsController < ApplicationController
   end
 
   def handle_borrowed_books_limit selected_books
-    borrowed_books_count = BorrowBook.count_for_user(current_user.id)
-    total_books_count = borrowed_books_count + selected_books.size
+    borrowed_books_count = BorrowBook.borrowed_by_user(current_user).count
+    pending_books = Request.pending_for_user(current_user).count
+    cart_books = current_user.carts.count
+    total_books_count = borrowed_books_count + pending_books + cart_books
 
-    return false if total_books_count <= Settings.max_books
+    if total_books_count + selected_books.size > 5
+      flash[:warning] = t "noti.over_limit_request_noti"
+      redirect_to new_request_path
+      return true
+    end
 
-    flash[:warning] = t "noti.over_limit_request_noti"
-    redirect_to root_path
-    true
+    false
   end
-
-  # def show
-  #   pending_requests = current_user.requests.pending
-  #   approved_requests = current_user.requests.approved
-  #   rejected_requests = current_user.requests.rejected
-
-  #   @pending_requests = fetch_requests_with_books(pending_requests)
-  #   @approved_requests = fetch_requests_with_books(approved_requests)
-  #   @rejected_requests = fetch_requests_with_books(rejected_requests)
-  # end
 
   def process_request selected_books
     ActiveRecord::Base.transaction do
@@ -89,11 +99,11 @@ class RequestsController < ApplicationController
         current_user.carts.where(book_id: book.id).destroy_all
       end
       flash[:success] = t "noti.request_success_noti"
-      redirect_to root_path
+      redirect_to request_show_path
     end
   end
 
   def request_params
-    params.require(:request).permit(:status)
+    params.require(:request).permit(:status, :description)
   end
 end

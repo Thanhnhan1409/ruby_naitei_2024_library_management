@@ -1,9 +1,42 @@
-<div class="request-card">
-  <h3>Request ID: <%= request.id %></h3>
-  <p>Status: <%= request.status %></p>
-  
-  <h4><%= t("requests.book_list_title") %></h4>
-  
-  <% books = request.books %>
-  <%= render partial: 'books_list', locals: { books: books, show_trash_icon: false } %>
-</div>
+<div id="request-<%= request.id %>" class="h-fit w-full gap-4 py-4">
+  <div class="flex ietms-center justify-between py-2 border-b shadow-md rounded-lg px-4 border">
+    <div class="flex flex-col gap-4">
+      <h2 class="text-primary font-semibold">Request ID: <%= request.id %></h2>
+      <% if request.description %>
+        <div class="flex items-center gap-2 text-gray-500">
+          <span><%= t("request.description") %>:</span>
+          <span><%= request.description %></span>
+        </div>
+      <% end %>
+    </div>
+    <% if is_show_cancel_button %>
+      <%= render_alert_dialog do %>
+        <%= alert_dialog_trigger do %>
+          <button class="bg-primary rounded-xl text-white py-2 px-4">
+            Cancel
+          </button>
+        <% end %>
+        <%= alert_dialog_content do %>
+          <div class="flex flex-col space-y-2 text-center sm:text-left">
+            <h2 class="text-lg font-semibold"><%= t("noti.confirm_to_cancel_request") %></h2>
+            <p class="text-sm text-muted-foreground">
+              <%= t("noti.description_cancel_request") %>
+            </p>
+            <%= render_input name: "sample_input", id: "sample_input", placeholder: t("book_details.write_review") %>
+          </div>
+        <% end %>
+
+        <%= alert_dialog_cancel do %>
+          <%= render_button(t("books_page.cancel"), variant: :outline) %>
+        <% end %>
+
+        <%= alert_dialog_continue do %> 
+          <%= button_tag(t("books_page.confirm"), type: :button, class: "confirm-button", data: { confirm_action: true, request_id: request.id }) %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="py-2 px-4 my-4 mb-10">
+    <%= render partial: "books_list", locals: { books: request.borrow_books.map(&:book), show_trash_icon: false } %>
+  </div>
+<div>

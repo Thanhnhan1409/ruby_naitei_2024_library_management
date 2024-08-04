@@ -175,8 +175,13 @@ vi:
       delete: "Xóa"
       request_empty: "Danh sách yêu cầu trống"
     show:
-      peding_list: "Danh sách chờ"
+      pending_list: "Danh sách chờ"
       borrowed_list: "Danh sách đã mượn"
-      borrowring_list: "Danh sách đang mượn"
+      borrowing_list: "Danh sách đang mượn"
+    request_list:
+      pending_requests: "Yêu cầu chờ"
+      reject_requests: "Yêu cầu bị từ chối"
+      approved_requests: "Yêu cầu đã duyệt"
+      cancel_request: "Yêu cầu đã hủy"
   home_page:
     start_reading: "Bắt đầu khám phá =>"

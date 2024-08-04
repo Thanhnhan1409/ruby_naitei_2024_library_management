@@ -14,5 +14,7 @@ class Request < ApplicationRecord
       RequestMailer.with(request: self, user:).rejection_email.deliver_now
     end
   end
-  scope :pending_for_user, ->(user){where(user:, status: :pending)}
+  scope :pending_for_user, lambda {|user|
+                             joins(:borrow_books).where(user:, status: :pending)
+                           }
 end

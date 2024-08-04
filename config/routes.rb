@@ -26,6 +26,10 @@ Rails.application.routes.draw do
       end
       resources :books, only: %i(index new create destroy edit update)
     end
-    resources :requests, only: %i(new create show)
+    resources :requests, only: %i(new create show index) do
+      member do
+        patch :update_status
+      end
+    end
   end
 end

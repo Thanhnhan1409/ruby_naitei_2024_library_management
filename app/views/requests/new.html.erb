@@ -1,4 +1,4 @@
-<div class="py-8 inline-block h-full w-full">
+<div class="container relative mx-auto mt-[84px]">
   <div class="text-3xl py-4 font-semibold mt-4"><%= t(".create_request") %></div>
   <%= form_with model: @request, method: :create, url: requests_path, local: true do |form| %>
     <div id="books-container" class="flex flex-col gap-4 p-6 border shadow-lg rounded-xl">

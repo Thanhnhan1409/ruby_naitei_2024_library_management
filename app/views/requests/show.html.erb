@@ -1,20 +1,24 @@
-<div class="mt-[80px]">
+<div class="container relative mx-auto mt-[84px]">
   <h1 class="mt-8 text-3xl font-semibold py-6">Danh sách sách</h1>
   <%= render_tabs do %>
     <%= tab_list do %>
-      <%= tab t(".pending_list"), active: true %>
-      <%= tab t(".borrowed_list") %>
-      <%= tab t(".borrowing_list") %>
+      <%= tab t(".pending_requests"), active: true %>
+      <%= tab t(".approved_requests") %>
+      <%= tab t(".reject_requests") %>
+      <%= tab t(".cancel_requests") %>
     <% end %>
     <%= tab_panels do %>
       <%= tab_panel active: true do %>
-        <%= render "books_list", books: @pending_books, show_trash_icon: false %>
+        <%= render partial: "request_list", locals: { requests: @pending_requests, is_show_cancel_button: true } %>
       <% end %>
       <%= tab_panel do %>
-        <%= render "books_list", books: @borrowed_books, show_trash_icon: false %>
+        <%= render partial: "request_list", locals: { requests: @approved_requests, is_show_cancel_button: false } %>
       <% end %>
       <%= tab_panel do %>
-        <%= render "books_list", books: @borrowing_books, show_trash_icon: false %>
+        <%= render partial: "request_list", locals: { requests: @rejected_requests, is_show_cancel_button: false } %>
+      <% end %>
+      <%= tab_panel do %>
+        <%= render partial: "request_list", locals: { requests: @canceled_requests, is_show_cancel_button: false } %>
       <% end %>
     <% end %>
   <% end %>

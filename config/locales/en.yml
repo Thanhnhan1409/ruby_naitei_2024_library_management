@@ -80,7 +80,6 @@ en:
     book_series_not_found: "Book series not found"
     sign_in_first: "Please sign in first"
     rating_fail: "There was an error when rating the book."
-
     book_already_in_cart: "This book is already in your cart."
     add_book_to_cart_success: "Add book to cart successfully."
     add_book_to_cart_fail: "Add book to cart failed."
@@ -179,8 +178,13 @@ en:
       delete: "Delete"
       request_empty: "Request is empty"
     show:
-      peding_list: "Pending List"
+      pending_list: "Pending List"
       borrowed_list: "Borrowed List"
-      borrowring_list: "Borrowing List"
+      borrowing_list: "Borrowing List"
+    request_list:
+      pending_requests: "Pending Requests"
+      reject_requests: "Reject Requests"
+      approved_requests: "Approved Requests"
+      cancel_request: "Cancel Request"
   home_page:
     start_reading: "Start Exploring =>"

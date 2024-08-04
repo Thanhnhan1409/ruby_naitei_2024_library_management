@@ -1,4 +1,4 @@
-<header class="fixed z-20 top-0 px-4 w-full">
+<header class="fixed z-20 top-0 px-4 w-full bg-background">
   <div class="bg-header h-[76px] flex justify-between items-center pl-8 pr-3 m-2 mt-4 mx-auto max-w-[1400px] rounded-full">
     <div class="flex gap-x-10 items-center">
       <%= link_to "/", id: "logo", class: "flex items-center pb-2" do %>
@@ -31,6 +31,14 @@
                 <i class="bi text-lg bi-person-circle"></i>
               </div>
               <span><%= t "profile_menu.profile" %></span>
+            <% end %>
+            <%= dropdown_menu_item do %>
+              <%= link_to request_path(current_user.id), class: "flex items-center" do %>
+                <div class="w-6 flex items-center pl-[3px] mr-2">
+                  <i class="bi bi-card-checklist text-lg"></i>
+                </div>
+                <span><%= t "profile_menu.new_request" %></span>
+              <% end %>
             <% end %>
             <%= dropdown_menu_item do %>
               <% if I18n.locale == :en %>
