@@ -1,0 +1,13 @@
+<div class="relative container">
+  <h1 class="mt-4 text-3xl font-semibold py-6"><%= t ".request_list" %></h1>
+  <%= form_with url: admin_requests_path, method: :get, local: true, class: "your-form-class flex justify-end gap-4 items-center mb-8" do %>
+    <%= select_tag :status, options_for_select(status_request_options_for_select, params[:status]), class: "col-span-2 rounded-md border border-input bg-background" %>
+    <%= text_field_tag :search, params[:search], placeholder: t("search"), class: "col-span-2 rounded-md border border-input bg-background" %>
+    <%= submit_tag t("user.filter"), class: "cursor-pointer h-10 px-4 py-2 bg-primary text-primary-foreground hover:bg-primary-500/90 rounded-md text-sm font-medium" %>
+  <% end %>
+  <% if @requests.empty? %>
+    <%= render "no_data" %>
+  <% else %>
+    <%= render partial: "request", collection: @requests, as: :request %>
+  <% end %>
+</div>

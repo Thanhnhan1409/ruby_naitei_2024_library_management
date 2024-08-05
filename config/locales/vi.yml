@@ -9,6 +9,8 @@ vi:
   published_date: "Ngày xuất bản"
   home: "Trang chủ"
   search: "Tìm kiếm"
+  mark_as_returned: "Đánh dấu trả sách"
+  borrow_books: "Danh sách mượn sách"
   profile_menu:
     profile: "Hồ sơ"
     language: "Ngôn ngữ"
@@ -91,6 +93,8 @@ vi:
     book_series_not_found: "Không tìm thấy bộ sách"
     sign_in_first: "Vui lòng đăng nhập trước"
     rating_fail: "Có lỗi xảy ra khi đánh giá"
+    book_returned_success: "Trả sách thành công."
+    book_returned_fail: "Trả sách thất bại."
     author:
       create_success: "Tạo tác giả thành công"
       create_fail: "Tạo tác giả thất bại"
@@ -200,7 +204,7 @@ vi:
     approved: "Đã duyệt"
     rejected: "Đã từ chối"
     pending: "Chờ duyệt"
-    canceled: "Đã hủy"
+    cancel: "Đã hủy"
     new:
       back: "Quay lại"
       send_request: "Gửi yêu cầu"
@@ -220,5 +224,7 @@ vi:
     request:
       request_id: "Mã yêu cầu"
       description: "Mô tả"
+      reject: "Từ chối"
+      approve: "Duyệt"
   home_page:
     start_reading: "Bắt đầu khám phá =>"

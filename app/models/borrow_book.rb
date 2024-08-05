@@ -25,4 +25,16 @@ class BorrowBook < ApplicationRecord
   scope :borrowing_by_user, lambda {|user|
                               where(user:, is_borrow: true)
                             }
+  scope :borrowed, ->{where(is_borrow: true)}
+
+  scope :with_details, (lambda do
+    joins(:book, :request, :user)
+      .select(
+        "books.id, books.title,
+          borrow_books.user_id,
+          borrow_books.borrow_date,
+          borrow_books.request_id,
+          users.name as user_name"
+      )
+  end)
 end

@@ -41,6 +41,14 @@ class Admin::BooksController < Admin::ApplicationController
     end
   end
 
+  def borrowed_books
+    @pagy, @borrowed_books = pagy(
+      BorrowBook
+        .borrowed
+        .with_details
+    )
+  end
+
   private
 
   def load_book

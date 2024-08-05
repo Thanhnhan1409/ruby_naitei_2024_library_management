@@ -9,8 +9,8 @@
     <%= javascript_importmap_tags %>
   </head>
   <body>
-    <main class="mx-auto">
-      <header class="flex justify-between items-center py-2 px-6 border-b">
+    <main class="mx-auto w-[100vw]">
+      <header class="bg-background flex fixed z-9 top-0 left-0 right-0 justify-between items-center py-2 px-6 border-b">
         <%= image_tag "logo.png", alt: "logo", class: "w-16 h-16" %>
         <div class="flex justify-between items-center">
           <%= link_to "Nhan cute", "#" %>
@@ -18,8 +18,8 @@
           <%= button_to t(".sign_out"), logout_path, method: :delete, data: { "turbo-method": :delete }  %>
         </div>
       </header>
-      <div class="flex gap-10 items-start">
-        <div class="min-w-[200px] border-r h-[100vh] px-2">
+      <div class="flex gap-10 items-start w-full mt-[80px]">
+        <div class="w-[260px] border-r h-[100vh] px-2 fixed z-10 top-20 left-0 bg-background">
           <%= render_accordion do %>
             <%= accordion_title do %>
               <%= t ".books" %>
@@ -37,7 +37,7 @@
             <% end %>
             <%= accordion_description do %>
               <ul>
-                <li class="py-3 px-6 border-b hover:bg-[#E0E0E0] cursor-pointer"><%= link_to t("book_request_list"), "#" %></li>
+                <li class="py-3 px-6 border-b hover:bg-[#E0E0E0] cursor-pointer"><%= link_to t("book_request_list"), admin_requests_show_path %></li>
               </ul>
             <% end %>
           <% end %>
@@ -62,7 +62,7 @@
             <% end %>
           <% end %>
         </div>
-        <div class="mt-8 w-full">
+        <div class="mt-4 w-9/12 ml-[340px] relative z-0">
           <%= yield %>
         </div>
       </div>

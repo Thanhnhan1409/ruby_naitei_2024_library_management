@@ -16,7 +16,7 @@
       <%= render_alert_dialog do %>
         <%= alert_dialog_trigger do %>
           <button class="bg-primary rounded-xl text-white py-2 px-4">
-            <%= t("request.cancel") %>
+            <%= t "request.reject"%>
           </button>
         <% end %>
         <%= alert_dialog_content do %>
@@ -32,7 +32,30 @@
           <%= render_button(t("books_page.cancel"), variant: :outline) %>
         <% end %>
         <%= alert_dialog_continue do %>
-          <%= button_tag(t("books_page.confirm"), type: :button, class: "confirm-button bg-primary text-white py-2 px-4 rounded-lg border", data: { action: "cancel", confirm_action: true, request_id: request.id }) %>
+          <%= button_tag(t("books_page.confirm"), type: :button, class: "confirm-button bg-primary text-white py-2 px-4 rounded-lg border", data: { action: "rejected", request_id: request.id }) %>
+        <% end %>
+      <% end %>
+
+      <%= render_alert_dialog do %>
+        <%= alert_dialog_trigger do %>
+          <button class="bg-primary rounded-xl text-white py-2 px-4">
+            <%= t "request.approve"%>
+          </button>
+        <% end %>
+        <%= alert_dialog_content do %>
+          <div class="flex flex-col space-y-2 text-center sm:text-left">
+            <h2 class="text-lg font-semibold"><%= t("noti.confirm_to_cancel_request") %></h2>
+            <p class="text-sm text-muted-foreground">
+              <%= t("noti.description_cancel_request") %>
+            </p>
+            <%= render_input name: "sample_input", id: "sample_input", placeholder: t("book_details.write_review") %>
+          </div>
+        <% end %>
+        <%= alert_dialog_cancel do %>
+          <%= render_button(t("books_page.cancel"), variant: :outline) %>
+        <% end %>
+        <%= alert_dialog_continue do %>
+          <%= button_tag(t("books_page.confirm"), type: :button, class: "confirm-button bg-primary text-white py-2 px-4 rounded-lg border", data: { action: "approved", request_id: request.id }) %>
         <% end %>
       <% end %>
     <% end %>

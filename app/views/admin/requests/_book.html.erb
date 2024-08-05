@@ -15,7 +15,7 @@
   <% if show_trash_icon %>
     <%= render_tooltip do %>
       <%= tooltip_trigger do %>
-        <%= form_with model:book, url: cart_path(book.id), method: :delete, remote: true, class: "inline-block" do %>
+        <%= form_with url: cart_path(book.id), method: :delete, remote: true, class: "inline-block" do %>
           <%= hidden_field_tag :book_id, book.id %>
           <button type="submit" class="bg-primary border-primary border-2 rounded-md text-primary-foreground hover:bg-primary/80 text-xl p-2 px-4">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-trash cursor-pointer mx-10" viewBox="0 0 16 16">

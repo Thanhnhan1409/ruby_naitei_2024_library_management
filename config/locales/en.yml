@@ -9,6 +9,8 @@ en:
   published_date: "Published Date"
   home: "Home"
   search: "Search"
+  mark_as_returned: "Mark as Returned"
+  borrow_books: "Borrow Books"
   profile_menu:
     profile: "Profile"
     language: "Language"
@@ -91,6 +93,8 @@ en:
     book_series_not_found: "Book series not found"
     sign_in_first: "Please sign in first"
     rating_fail: "There was an error when rating the book."
+    book_returned_success: "Book returned successfully."
+    book_returned_fail: "Failed to return the book."
     author:
       created_success: "Author created successfully."
       created_fail: "Failed to create author."
@@ -151,6 +155,7 @@ en:
       authors: "Authors"
       book_request_list: "Book Request List"
       book_list: "Book List"
+      request_list: "Request List"
       user_list: "User List"
       user_ban_list: "User Ban List"
       author_list: "Author List"
@@ -202,7 +207,7 @@ en:
     approved: "Approved"
     rejected: "Rejected"
     pending: "Pending"
-    canceled: "Canceled"
+    cancel: "Canceled"
     new:
       back: "Back"
       send_request: "Send Request"
@@ -222,5 +227,7 @@ en:
     request:
       request_id: "Request ID"
       description: "Description"
+      reject: "Reject"
+      approve: "Approve"
   home_page:
     start_reading: "Start Exploring =>"

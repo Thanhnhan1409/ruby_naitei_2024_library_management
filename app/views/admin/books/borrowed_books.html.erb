@@ -1,0 +1,41 @@
+<h1 class="mt-4 text-3xl font-semibold py-6"><%= t "borrow_books" %></h1>
+<%= render_table do %>
+  <%= table_head do %>
+    <%= table_header "Book Id", class: "w-1/10" %>
+    <%= table_header class: "w-1/4" do %>
+      Title
+    <% end %>
+    <%= table_header "Request Id", class: "w-1/10"  %>
+    <%= table_header "User name", class: "w-1/8"  %>
+    <%= table_header "Borrow Date", class: "w-1/10" %>
+    <%= table_header "", class: "w-1/6" %>
+  <% end %>
+  <%= table_body do %>
+    <% @borrowed_books.each.with_index do |book, i| %>
+      <%= table_row do %>
+        <%= table_column do %>
+          <%= book.id %>
+        <% end %>
+        <%= table_column do %>
+          <%= book.title %>
+        <% end %>
+        <%= table_column do %>
+          <%= book.request_id %>
+        <% end %>
+        <%= table_column do %>
+          <%= book.user_name %>
+        <% end %>
+        <%= table_column do %>
+          <%= book.borrow_date %>
+        <% end %>
+        <%= table_column do %>
+          <%= form_with url: mark_as_returned_admin_borrow_books_path, method: :patch, local: true do %>
+            <%= hidden_field_tag :book_id, book.id %>
+            <%= hidden_field_tag :request_id, book.request_id %>
+            <%= submit_tag t("mark_as_returned"), class: "btn btn-primary inline-block rounded-lg px-4 py-2 border bg-primary text-white" %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
